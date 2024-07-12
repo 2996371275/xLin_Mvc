@@ -11,10 +11,6 @@ public class Main : xLin.MonoSingleton<Main>
         xLin.EventSystemManager.Instance.Init();
         xLin.TimerManager.Instance.Init();
         xLin.Updater.Instance.Init();
-        xLin.TimerManager.Instance.Add("timer1", 1, () =>
-        {
-            Debug.Log("timer1");
-        },true);
      
     }
 
