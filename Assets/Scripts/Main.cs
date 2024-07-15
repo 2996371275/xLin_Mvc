@@ -11,7 +11,14 @@ public class Main : xLin.MonoSingleton<Main>
         xLin.EventSystemManager.Instance.Init();
         xLin.TimerManager.Instance.Init();
         xLin.Updater.Instance.Init();
+        xLin.UIManager.Instance.Init();
+        xLin.ControlerManager.Instance.Init();
      
+    }
+
+    private void Start()
+    {
+        MainViewControler.Instance.OpenView("MainView");
     }
 
     private void OnDestroy()

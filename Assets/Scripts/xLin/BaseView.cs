@@ -7,6 +7,7 @@ namespace xLin
     public class BaseView
     {
         public GameObject gameObject;
+        public BaseModel model;
         public BaseView(GameObject obj)
         {
             gameObject = obj;

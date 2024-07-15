@@ -17,7 +17,7 @@ namespace xLin{
     {
         public void Load(string pathType, string path, System.Action<Object> onCpmplete)
         {
-            string loadPath = pathType + path;
+            string loadPath = pathType + path+"/"+path;
             try
             {
                 Updater.Instance.StartCoroutine(LoadAsync(loadPath,onCpmplete));
