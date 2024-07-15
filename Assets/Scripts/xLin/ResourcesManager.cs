@@ -7,7 +7,7 @@ namespace xLin{
     /// <summary>
     /// 各类资源路径结构体
     /// </summary>
-    public struct Path
+    public struct PathDef
     {
         public static string view = "View/";
         public static string texture = "Texture/";
@@ -15,7 +15,7 @@ namespace xLin{
     }
     public class ResourcesManager:BaseSingleton<ResourcesManager>
     {
-        public void Load(Path pathType,string path, System.Action<Object> onCpmplete)
+        public void Load(string pathType, string path, System.Action<Object> onCpmplete)
         {
             string loadPath = pathType + path;
             try

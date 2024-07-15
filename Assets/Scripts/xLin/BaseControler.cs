@@ -14,7 +14,11 @@ namespace xLin
         }
         public virtual void Open(string viewName)
         {
-
+            ResourcesManager.Instance.Load(PathDef.view, viewName, (gameObject) =>
+            {
+                GameObject temp = gameObject as GameObject;
+                temp.name = viewName;
+            });
         }
 
         public virtual void Dispose()

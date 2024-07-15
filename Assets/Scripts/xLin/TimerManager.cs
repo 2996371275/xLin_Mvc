@@ -78,7 +78,7 @@ namespace xLin {
 
             xLinTimer timer = new xLinTimer(name,duration, action);
             timers.Add(name, timer);
-            EventSystemManager.Instance.Add(EventKeyName.Update, timers[name].Update);
+            Updater.Instance.Add(UpdaterDef.update, timers[name].Update);
         }
         public virtual void Add(string name, float duration, System.Action action,bool isLoop)
         {
@@ -89,14 +89,14 @@ namespace xLin {
 
             xLinTimer timer = new xLinTimer(name, duration, action, isLoop);
             timers.Add(name, timer);
-            EventSystemManager.Instance.Add(EventKeyName.Update, timers[name].Update);
+            Updater.Instance.Add(UpdaterDef.update, timers[name].Update);
         }
 
         public void Remove(string name)
         {
             if (timers.ContainsKey(name))
             {
-                EventSystemManager.Instance.Remove(EventKeyName.Update,timers[name].Update);
+                Updater.Instance.Remove(UpdaterDef.update, timers[name].Update);
                 timers.Remove(name);
             }
 
