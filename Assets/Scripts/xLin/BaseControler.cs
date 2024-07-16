@@ -24,32 +24,28 @@ namespace xLin
                 Transform tf = UIManager.Instance.UILayerToLayer(viewInfo.uiLayer).Find("Default");
                 temp.transform.SetParent(tf);
                 var rt = temp.transform.GetComponent<RectTransform>();
+                rt.anchorMin = new Vector2(0,0);
+                rt.anchorMax = new Vector2(1, 1);
+                rt.offsetMax = new Vector2(0, 0);
+                rt.offsetMin = new Vector2(0, 0);
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 Type type = assembly.GetType(viewName);
                 if (type != null)
                 {
-                    object[] constructorArgs = { gameObject };
-                    ConstructorInfo constructor = type.GetConstructor(new Type[] { typeof(GameObject) });
+                   
+                    object[] constructorArgs = { };
+                    ConstructorInfo constructor = type.GetConstructor(Type.EmptyTypes);
                     if (constructor != null)
                     {
                     
-                        object instance = constructor.Invoke(constructorArgs);
+                        object instance = constructor.Invoke(null);
                         BaseView baseView = instance as BaseView;
+                        baseView.Init(temp);
                         view = baseView;
-                        view.model = this.model;
 
                     }
                 }
             });
-        }
-
-        public virtual void Dispose()
-        {
-            model.Dispose();
-            if (view != null)
-            {
-                view.Dispose();
-            }
         }
     }
 }

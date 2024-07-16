@@ -13,7 +13,6 @@ public class Main : xLin.MonoSingleton<Main>
         xLin.Updater.Instance.Init();
         xLin.UIManager.Instance.Init();
         xLin.ControlerManager.Instance.Init();
-     
     }
 
     private void Start()
@@ -23,8 +22,9 @@ public class Main : xLin.MonoSingleton<Main>
 
     private void OnDestroy()
     {
-        xLin.EventSystemManager.Instance.Dispose();
         xLin.TimerManager.Instance.Dispose();
+        xLin.UIManager.Instance.Dispose();
+        xLin.EventSystemManager.Instance.Dispose();
     }
 
 }

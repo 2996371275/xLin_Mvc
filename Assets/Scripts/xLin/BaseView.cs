@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace xLin
@@ -7,10 +8,10 @@ namespace xLin
     public class BaseView
     {
         public GameObject gameObject;
-        public BaseModel model;
-        public BaseView(GameObject obj)
+        ViewInfo viewInfo;
+        public Dictionary<string, ViewConfig> viewConfigs;
+        public BaseView()
         {
-            gameObject = obj;
             EventSystemManager.Instance.Add(EventKeyName.Awake, Awake);
             EventSystemManager.Instance.Add(EventKeyName.Start, Start);
             EventSystemManager.Instance.Add(EventKeyName.OnDestory, OnDestroy);
@@ -20,19 +21,58 @@ namespace xLin
             Updater.Instance.Add(UpdaterDef.update, Update);
             Updater.Instance.Add(UpdaterDef.fixedUpdate, FixedUpdate);
             Updater.Instance.Add(UpdaterDef.lateUpdate, LateUpdate);
+          
+        }
+        public virtual void Init(GameObject obj)
+        {
+            gameObject = obj;
+            viewInfo = gameObject.GetComponent<ViewInfo>();
+            GetViewConfig();
         }
         public virtual void Awake() { }
         public virtual void Start() { }
-        public virtual void Update() { }
-        public virtual void OnDestroy() { }
-        public virtual void FixedUpdate() { }
+        public virtual void Update() {
+            if (!(gameObject!=null && gameObject.activeInHierarchy))
+            {
+                return;
+            }
+        }
+        public virtual void OnDestroy() {
+            Dispose();
+        }
+        public virtual void FixedUpdate() {
+            if (!(gameObject != null && gameObject.activeInHierarchy))
+            {
+                return;
+            }
+        }
         public virtual void LateUpdate()
         {
+            if (!(gameObject != null && gameObject.activeInHierarchy))
+            {
+                return;
+            }
         }
 
         public virtual void OnEnable() { }
         public virtual void OnDisable() { }
+        public virtual void GetViewConfig()
+        {
+            try {
+                if (viewConfigs!=null && viewConfigs.Count > 0) {
+                    
+                }
+                else
+                {
 
+                    viewConfigs = Tool.Instance.LoadViewConfig(viewInfo.viewConfig.text); 
+                }
+
+            } catch (System.Exception ex)
+            {
+                Debug.LogWarning(ex.Message);
+            }
+        }
         public virtual void Dispose() {
             Updater.Instance.Remove(UpdaterDef.update, Update);
             Updater.Instance.Remove(UpdaterDef.fixedUpdate, FixedUpdate);
@@ -42,7 +82,12 @@ namespace xLin
             EventSystemManager.Instance.Remove(EventKeyName.OnDestory, OnDestroy);
             EventSystemManager.Instance.Remove(EventKeyName.OnEnable, OnEnable);
             EventSystemManager.Instance.Remove(EventKeyName.OnDisable, OnDisable);
-            GameObject.Destroy(gameObject);
+            viewConfigs.Clear();
+            viewInfo = null;
+            if (gameObject.activeInHierarchy && gameObject != null) {
+                GameObject.Destroy(gameObject); 
+            }
+            gameObject = null;
         }
     }
 }

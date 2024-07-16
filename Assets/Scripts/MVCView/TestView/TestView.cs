@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainView : xLin.BaseView
+public class TestView : xLin.BaseView
 {
+    public TestView():base()
+    {
+       
+    }
+    public override void Init(GameObject obj)
+    {
+        base.Init(obj);
+    }
     public override void Awake() {
         base.Awake();
     }
@@ -31,6 +39,7 @@ public class MainView : xLin.BaseView
         base.OnDisable();
 
     }
+
     public override void Dispose()
     {
         base.Dispose();

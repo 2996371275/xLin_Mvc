@@ -10,5 +10,6 @@ namespace xLin
         public string uiLayer = "Default";
         public int order = 0;
         public bool addStack = false;
+        public TextAsset viewConfig;
     }
 }

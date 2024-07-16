@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using xLin;
 
-public class MainViewControler : xLin.BaseControler {
+public class TestViewControler : xLin.BaseControler {
     public override void Init(BaseModel _model)
     {
         base.Init(_model);

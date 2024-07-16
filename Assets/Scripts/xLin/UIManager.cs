@@ -42,5 +42,11 @@ namespace xLin
             }
             return tf;
         }
+
+        public void Dispose()
+        {
+
+        }
+
     }
 }
