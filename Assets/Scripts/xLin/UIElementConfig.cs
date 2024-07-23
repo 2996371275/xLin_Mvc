@@ -2,17 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace xLin
 {
-    public class ViewConfig
+    [System.Serializable]
+    public class UIElementConfig
     {
-        public Type type;
         public string name;
+        public string type;
         public string path;
         public string fontColor;
         public string texturePath;
         public string spritePath;
-        public float fontSize;
+        public int fontSize;
+
+        public void GetElement<T>()
+        {
+
+        }
     }
+
 }

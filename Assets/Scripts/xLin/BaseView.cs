@@ -9,7 +9,7 @@ namespace xLin
     {
         public GameObject gameObject;
         ViewInfo viewInfo;
-        public Dictionary<string, ViewConfig> viewConfigs;
+        public Dictionary<string, UIElementConfig> viewConfigs;
         public BaseView()
         {
             EventSystemManager.Instance.Add(EventKeyName.Awake, Awake);
@@ -28,9 +28,14 @@ namespace xLin
             gameObject = obj;
             viewInfo = gameObject.GetComponent<ViewInfo>();
             GetViewConfig();
+            Debug.Log("Init");
         }
-        public virtual void Awake() { }
-        public virtual void Start() { }
+        public virtual void Awake() {
+            Debug.Log("Awake");
+        }
+        public virtual void Start() {
+            Debug.Log("Start");
+        }
         public virtual void Update() {
             if (!(gameObject!=null && gameObject.activeInHierarchy))
             {
@@ -60,7 +65,7 @@ namespace xLin
         {
             try {
                 if (viewConfigs!=null && viewConfigs.Count > 0) {
-                    
+                 
                 }
                 else
                 {
