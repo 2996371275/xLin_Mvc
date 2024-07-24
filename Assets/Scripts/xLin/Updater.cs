@@ -36,31 +36,22 @@ namespace xLin
         {
             if (Updater.Instance != null)
             {
-                foreach(var value in updaters)
-                {
-                    value.Value?.Invoke();
-                }
+                InvokeActions(updaters);
             }
         }
         private void FixedUpdate()
         {
             if (Updater.Instance != null)
             {
-                foreach (var value in fixedUpdaters)
-                {
-                    value.Value?.Invoke();
-                }
+                InvokeActions(fixedUpdaters);
             }
         }
         private void LateUpdate()
-        {
-            if (Updater.Instance != null)
-            {
-                foreach (var value in lateUpdaters)
-                {
-                    value.Value?.Invoke();
-                }
-            }
+        {     
+            if (Updater.Instance != null)          
+            {               
+                InvokeActions(lateUpdaters);     
+            }    
         }
         private void OnDisable()
         {
@@ -72,12 +63,19 @@ namespace xLin
         }
         private void OnDestroy()
         {
-            EventSystemManager.Instance.DispatchEvent(EventKeyName.OnDestory);
+            
             updaters.Clear();
             fixedUpdaters.Clear();
             lateUpdaters.Clear();
         }
-
+        private void InvokeActions(Dictionary<UpdaterDef, System.Action> actions)
+        {
+            List<System.Action> actionList = new List<System.Action>(actions.Values);
+            foreach (var action in actionList)
+            {
+                action?.Invoke();
+            }
+        }
 
         public void Add(UpdaterDef def,System.Action action)
         {

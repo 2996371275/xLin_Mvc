@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
 using System;
+using UnityEditor;
 
 public class Main : xLin.MonoSingleton<Main>
 {
@@ -13,11 +14,26 @@ public class Main : xLin.MonoSingleton<Main>
         xLin.Updater.Instance.Init();
         xLin.UIManager.Instance.Init();
         xLin.ControlerManager.Instance.Init();
+        xLin.EventSystemManager.Instance.Add(xLin.EventKeyName.ExitApplication, () => {
+            Debug.Log("关闭程序");
+            Application.Quit();
+#if UNITY_EDITOR
+            // 停止播放模式
+            if (EditorApplication.isPlaying)
+            {
+                EditorApplication.isPlaying = false;
+            }
+             
+#endif
+        });
+
     }
 
     private void Start()
     {
-        MainViewControler.Instance.OpenView("MainView");
+        xLin.TimerManager.Instance.Add(xLin.TimerKeyName.MainStart,1, () => {
+            MainViewControler.Instance.OpenView("MainView");
+        });
     }
 
     private void OnDestroy()

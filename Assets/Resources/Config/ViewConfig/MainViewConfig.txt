@@ -1,8 +1,8 @@
 string	string	string	string	string	string	int
-名称（代码里调用名称	类型（组件Image，Text，RawImage）	路径（在预制体上的路径）	字色	纹理路径	图集路径	字号	
+名称（代码里调用名称	类型（组件Image，Text，RawImage）	路径（在预制体上的路径）	字色	纹理路径	图集路径	字号
 name	type	path	fontColor	texturePath	spritePath	fontSize
 buttonImage	Image	Button				
-buttonText	Text	Button/Text (TMP)	323232			24
+buttonText	Text	Button/Text (TMP)	00ff00			24
 image	Image	Image				
 RawImage	RawImage	RawImage				
-text	Text	Text (TMP)	FFFFFF			24
+text	Text	Text (TMP)	FF0000			24

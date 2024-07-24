@@ -42,6 +42,7 @@ namespace xLin
                         BaseView baseView = instance as BaseView;
                         baseView.Init(temp);
                         view = baseView;
+                        viewInfo.baseView = view;
 
                     }
                 }
