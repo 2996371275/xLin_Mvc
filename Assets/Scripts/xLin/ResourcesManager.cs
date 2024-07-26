@@ -13,6 +13,7 @@ namespace xLin{
         public static string texture = "Texture/";
         public static string prefab = "Prefabs/";
         public static string sprite = "Sprite/";
+        public static string modelView = "Prefabs/ModelView/";
     }
     public class ResourcesManager:BaseSingleton<ResourcesManager>
     {

@@ -14,6 +14,7 @@ public class Main : xLin.MonoSingleton<Main>
         xLin.Updater.Instance.Init();
         xLin.UIManager.Instance.Init();
         xLin.ControlerManager.Instance.Init();
+        xLin.ModelView.Instance.Init();
         xLin.EventSystemManager.Instance.Add(xLin.EventKeyName.ExitApplication, () => {
             Debug.Log("¹Ø±Õ³ÌÐò");
             Application.Quit();
@@ -38,6 +39,7 @@ public class Main : xLin.MonoSingleton<Main>
 
     private void OnDestroy()
     {
+        xLin.ModelView.Instance.Dispose();
         xLin.EventSystemManager.Instance.Dispose(); 
         xLin.TimerManager.Instance.Dispose();
         xLin.UIManager.Instance.Dispose();

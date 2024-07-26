@@ -6,3 +6,5 @@ buttonText	Text	Button/Text (TMP)	00ff00			24
 image	Image	Image				
 RawImage	RawImage	RawImage				
 text	Text	Text (TMP)	FF0000			24
+startButton	Image	startButton				
+startButtonText	Text	startButton/Text (TMP)	00ff00			24

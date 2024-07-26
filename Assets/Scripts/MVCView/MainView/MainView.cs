@@ -16,6 +16,10 @@ public class MainView : xLin.BaseView
             xLin.EventSystemManager.Instance.DispatchEvent(xLin.EventKeyName.ExitApplication);
             Dispose();
         });
+        UIElements["startButtonText"].transform.GetComponent<TMPro.TMP_Text>().text = "¿ªÊ¼";
+        UIElements["startButton"].transform.GetComponent<Button>().onClick.AddListener(() => {
+            TiaoYiTiaoManager.Instance.Init();
+        });
     }
     public override void Update() {
         base.Update();
